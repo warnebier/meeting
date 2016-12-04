@@ -48,11 +48,6 @@
     </div>
 
     <script type="text/javascript">
-        function playSound(e) {
-            var audio = e.target.childNodes[1];
-            audio.play();
-        }
-
         // after page load
         window.onload = function() {
             // look for all <button> tags
@@ -60,7 +55,7 @@
             for (i = 0; i < buttons.length; i++) { // for each button
                 var button = buttons[i];
                 button.type = "button";
-                button.className += "btn btn-primary btn-lg"
+                button.className += "btn btn-default btn-lg"
                 button.style.margin = "5px";
                 // attach audio element
                 var audio = new Audio();
@@ -68,7 +63,9 @@
                 audio.preload = "auto";
                 button.appendChild(audio);
                 // play sound when clicked
-                button.addEventListener("click", playSound, false);
+                button.addEventListener("click", function() {
+                    audio.play()
+                }, false);
             }
         }
     </script>
