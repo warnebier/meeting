@@ -57,11 +57,10 @@
                 button.type = "button";
                 button.className += "btn btn-default btn-lg"
                 button.style.margin = "5px";
-                // attach audio element
+                // create audio element
                 var audio = new Audio();
                 audio.src = "so what_hard.mp3";
-                audio.preload = "auto";
-                button.appendChild(audio);
+                audio.load();
                 // play sound when clicked
                 button.addEventListener("click", function() {
                     audio.play()
