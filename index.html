@@ -4,23 +4,69 @@
 <head>
     <title>Meeting</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
     <style type="text/css">
-        body {
+        /*body {
             display: flex;
             flex-direction: column;
             margin-top: 20px;
         }
-        
         body>div {
             font-size: 30px;
             display: flex;
             justify-content: space-between;
-        }
+        }*/
     </style>
 </head>
 
 <body>
-    <div>So What? <audio controls><source src="so what_hard.mp3" type="audio/mpeg"></audio></div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#de" role="tab">DE</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#en" role="tab">EN</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane active" id="de" role="tabpanel">
+            <button play="so what_hard.mp3">Na und?</button>
+        </div>
+        <div class="tab-pane" id="en" role="tabpanel">
+            <button play="so what_hard.mp3">So What?</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function playSound(e) {
+            var audio = e.target.childNodes[1];
+            audio.play();
+        }
+
+        // after page load
+        window.onload = function() {
+            // look for all <button> tags
+            var buttons = document.getElementsByTagName("button");
+            for (i = 0; i < buttons.length; i++) { // for each button
+                var button = buttons[i];
+                button.type = "button";
+                button.className += "btn btn-primary";
+                // attach audio element
+                var audio = new Audio();
+                audio.src = "so what_hard.mp3";
+                audio.preload = "auto";
+                button.appendChild(audio);
+                // play sound when clicked
+                button.addEventListener("click", playSound, false);
+            }
+        }
+    </script>
 </body>
 
 </html>
